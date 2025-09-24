@@ -1,0 +1,352 @@
+<style>
+  body {
+    background-image: url("https://user-uploads.perchance.org/file/26cb89e0b22322856be665ec207ad47e.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #ffe5e5;
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+  }
+
+  button {
+    background-color: #41c49a; /* Darker button color */
+    color: black;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #339980; /* Darker hover color */
+    transform: scale(1.05);
+  }
+  
+  #wordleBtn {
+    background-color: #444444 !important; /* Dark grey */
+    color: white;
+  }
+  
+  #wordleBtn:hover {
+    background-color: #333333 !important; /* Darker grey */
+    color: white;
+    transform: scale(1.05);
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  button[data-generate="true"] {
+    padding: 12px 24px;
+    font-size: 20px;
+  }
+
+  input,
+  select,
+  textarea {
+    border-radius: 8px;
+    border: 2px solid #7fffd4;
+    padding: 6px;
+    font-size: 14px;
+  }
+  
+  /* Menu styling */
+  #menuBtn {
+    background-color: #41c49a;
+    font-weight: bold;
+  }
+  
+  #menuBtn:hover {
+    background-color: #339980; /* Changed to match other buttons */
+  }
+  
+  #menuCtn button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    background-color: #444444; /* Dark grey for all menu buttons */
+    color: white;
+  }
+  
+  #menuCtn button:hover {
+    transform: translateX(5px);
+    background-color: #333333; /* Darker grey on hover */
+  }
+  
+  #menuCtn button:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Enhanced menu styling with animations */
+  #menuCtn {
+    transform-origin: top left;
+    transition: all 0.3s ease;
+  }
+
+  .star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background-color: #ffffff;
+    pointer-events: none;
+    animation: twinkle 1.5s infinite alternate;
+    z-index: -1;
+  }
+
+  @keyframes twinkle {
+    0% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .message {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    max-width: 80%;
+  }
+
+  .user-message {
+    background-color: #41c49a; /* Darker user message color */
+    color: #000;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  .bot-message {
+    background-color: #333;
+    color: #e0e0e0;
+    align-self: flex-start;
+  }
+
+  .typing-indicator {
+    display: inline-block;
+  }
+
+  .typing-indicator span {
+    height: 10px;
+    width: 10px;
+    float: left;
+    margin: 0 1px;
+    background-color: #9e9ea1;
+    display: block;
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+
+  .typing-indicator span:nth-of-type(1) {
+    animation: 1s blink infinite 0.3333s;
+  }
+
+  .typing-indicator span:nth-of-type(2) {
+    animation: 1s blink infinite 0.6666s;
+  }
+
+  .typing-indicator span:nth-of-type(3) {
+    animation: 1s blink infinite 0.9999s;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Wordle Styles */
+  .wordle-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+
+  .wordle-letter {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .wordle-letter.empty {
+    background-color: transparent;
+  }
+
+  .wordle-letter.correct {
+    background-color: #3dd5af;
+    border-color: #3dd5af;
+  }
+
+  .wordle-letter.present {
+    background-color: #d57bd5;
+    border-color: #d57bd5;
+  }
+
+  .wordle-letter.absent {
+    background-color: #3a5d6e;
+    border-color: #3a5d6e;
+  }
+  
+  /* Swirling purple and blue background for chatbot button */
+  @keyframes swirl-background {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Running bunny animation */
+  #runningBunnyEl {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  
+  /* X close button style */
+  .x-close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #41c49a;
+    color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  
+  .x-close-btn:hover {
+    background-color: #339980;
+    transform: scale(1.05);
+  }
+  
+  /* Mobile styles for iPhone devices */
+  @media screen and (max-width: 767px), 
+         screen and (max-device-width: 767px) {
+    button {
+      /* Smaller buttons */
+      font-size: 14px;
+      padding: 6px 10px;
+      /* Darker shade */
+      background-color: #339980;
+    }
+    
+    button[data-generate="true"] {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    
+    /* Adjust menu for mobile */
+    #menuBtn {
+      top: 10px;
+      left: 10px;
+      font-size: 14px;
+      padding: 5px 8px;
+    }
+    
+    #menuCtn {
+      top: 40px;
+      width: 200px;
+    }
+    
+    /* Adjust containers for mobile */
+    #chatbotCtn, #wordleCtn, #genLinksCtn {
+      width: 250px;
+      height: 350px;
+    }
+    
+    /* Make wordle game elements smaller */
+    .wordle-letter {
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+      margin-right: 3px;
+    }
+    
+    #rulesCtn {
+      max-width: 90%;
+      font-size: 13px;
+    }
+    
+    input, select, textarea {
+      font-size: 12px;
+      padding: 4px;
+    }
+    
+    /* Adjust wordle input for mobile */
+    #wordleGuessInput {
+      width: 55%;
+    }
+    
+    /* Make the rules button more visible on mobile */
+    #rulesBtn {
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+    
+    /* Adjust X close button for mobile */
+    .x-close-btn {
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+    }
+  }
+  
+  /* Specific iPhone styles */
+  @media screen and (max-device-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+    /* Additional iPhone-specific adjustments */
+    button {
+      background-color: #2c806a; /* Even darker shade for iPhone */
+    }
+    
+    /* Increase tap targets for better usability */
+    button, input[type="button"] {
+      min-height: 36px;
+    }
+    
+    /* Smaller menu on iPhone */
+    #menuBtn {
+      font-size: 12px;
+      padding: 4px 7px;
+    }
+    
+    #menuCtn {
+      width: 180px;
+    }
+    
+    #menuCtn button {
+      font-size: 12px;
+      padding: 4px 7px;
+    }
+  }
+</style>
