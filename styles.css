@@ -348,7 +348,7 @@
       font-size: 12px;
       padding: 4px 7px;
     }
-   #welcomePopup {
+    #welcomePopup {
     position: fixed;
     top: 0;
     left: 0;
@@ -367,7 +367,7 @@
     to { opacity: 1; }
   }
   
-  .popupContent {
+    .popupContent {
     background: linear-gradient(135deg, #41c49a, #339980);
     color: white;
     padding: 20px;
@@ -395,7 +395,7 @@
     }
   }
   
-  .agreeBtn {
+    .agreeBtn {
     background-color: #41c49a;
     color: white;
     border: none;
@@ -408,28 +408,28 @@
     transition: all 0.3s ease;
   }
   
-  .agreeBtn:hover {
+    .agreeBtn:hover {
     background-color: #339980;
     transform: scale(1.05);
   }
   
-  .rulesLink {
+    .rulesLink {
     color: #ffffff;
     text-decoration: underline;
     cursor: pointer;
   }
   
-  .rulesLink:hover {
+    .rulesLink:hover {
     color: #e0e0e0;
   }
   
   /* Checkbox styling for "Don't show again" */
-  #dontShowAgainChk {
+    #dontShowAgainChk {
     margin-right: 5px;
     vertical-align: middle;
   }
   
-  .dontShowAgainLabel {
+    .dontShowAgainLabel {
     font-size: 14px;
     vertical-align: middle;
   }
